@@ -21,7 +21,8 @@ public class Project {
     @Column
     private int duration;
 
-    @ManyToMany
+//    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
 //    @JsonIgnoreProperties({"projects"})
     @JsonBackReference
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
