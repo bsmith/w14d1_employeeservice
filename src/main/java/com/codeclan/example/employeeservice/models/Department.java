@@ -1,5 +1,6 @@
 package com.codeclan.example.employeeservice.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
@@ -18,7 +19,8 @@ public class Department {
     @Column
     private String name;
 
-    @JsonIgnoreProperties({"department"})
+//    @JsonIgnoreProperties({"department"})
+    @JsonBackReference
     @OneToMany(mappedBy = "department")
     private List<Employee> employees;
 

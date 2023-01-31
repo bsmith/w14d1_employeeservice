@@ -1,6 +1,7 @@
 package com.codeclan.example.employeeservice.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -29,11 +30,13 @@ public class Employee {
 
     @ManyToOne
     @JoinColumn(name = "department_id", nullable = true)
-    @JsonIgnoreProperties({"employee"})
+//    @JsonIgnoreProperties({"employee"})
+    @JsonManagedReference
     private Department department;
 
     @ManyToMany
-    @JsonIgnoreProperties({"employees"})
+//    @JsonIgnoreProperties({"employees"})
+    @JsonManagedReference
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
             name = "employees_projects",

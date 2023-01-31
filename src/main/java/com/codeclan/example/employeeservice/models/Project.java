@@ -1,5 +1,6 @@
 package com.codeclan.example.employeeservice.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
@@ -21,7 +22,8 @@ public class Project {
     private int duration;
 
     @ManyToMany
-    @JsonIgnoreProperties({"projects"})
+//    @JsonIgnoreProperties({"projects"})
+    @JsonBackReference
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
             name = "employees_projects",
