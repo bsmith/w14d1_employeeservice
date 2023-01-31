@@ -2,6 +2,7 @@ package com.codeclan.example.employeeservice.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
 import javax.persistence.*;
@@ -20,7 +21,8 @@ public class Department {
     private String name;
 
 //    @JsonIgnoreProperties({"department"})
-    @JsonBackReference
+//    @JsonBackReference
+    @JsonManagedReference
     @OneToMany(mappedBy = "department")
     private List<Employee> employees;
 

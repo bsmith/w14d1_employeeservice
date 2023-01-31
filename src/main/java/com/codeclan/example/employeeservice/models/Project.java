@@ -1,7 +1,9 @@
 package com.codeclan.example.employeeservice.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -24,7 +26,8 @@ public class Project {
 //    @ManyToMany(fetch = FetchType.EAGER)
     @ManyToMany(fetch = FetchType.LAZY)
 //    @JsonIgnoreProperties({"projects"})
-    @JsonBackReference
+//    @JsonBackReference
+    @JsonManagedReference
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
             name = "employees_projects",

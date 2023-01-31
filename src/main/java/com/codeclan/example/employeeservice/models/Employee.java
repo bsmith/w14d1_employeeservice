@@ -1,5 +1,7 @@
 package com.codeclan.example.employeeservice.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Cascade;
@@ -7,6 +9,7 @@ import org.hibernate.annotations.Cascade;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "employees")
@@ -31,12 +34,14 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "department_id", nullable = true)
 //    @JsonIgnoreProperties({"employee"})
-    @JsonManagedReference
+//    @JsonManagedReference
+    @JsonBackReference
     private Department department;
 
     @ManyToMany
 //    @JsonIgnoreProperties({"employees"})
-    @JsonManagedReference
+//    @JsonManagedReference
+    @JsonBackReference
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
             name = "employees_projects",
@@ -115,5 +120,15 @@ public class Employee {
 
     public void addProject(Project project) {
         this.projects.add(project);
+    }
+
+    @JsonGetter
+    public Long getDepartmentId() {
+        return this.department.getId();
+    }
+
+    @JsonGetter
+    public List<Long> getProjectIds() {
+        return this.projects.stream().map(Project::getId).collect(Collectors.toList());
     }
 }
