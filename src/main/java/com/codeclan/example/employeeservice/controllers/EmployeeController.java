@@ -23,14 +23,14 @@ public class EmployeeController {
         return employeeRepository.findById(id);
     }
 
-    @DeleteMapping(value = "/employees/{id}")
-    public void deleteEmployeeById(@PathVariable Long id) {
-        employeeRepository.deleteById(id);
-    }
-
-    @PostMapping(value = "/employees")
-    public void createEmployee() {
-        Employee employee = new Employee("Random Person", 25, "RANDOM", "random@example.com");
-        employeeRepository.save(employee);
-    }
+//    @DeleteMapping(value = "/employees/{id}")
+//    public void deleteEmployeeById(@PathVariable Long id) {
+//        employeeRepository.deleteById(id);
+//    }
+//
+//    @PostMapping(value = "/employees")
+//    public void createEmployee() {
+//        Employee employee = new Employee("Random Person", 25, "RANDOM", "random@example.com");
+//        employeeRepository.save(employee);
+//    }
 }
